@@ -6,3 +6,5 @@ This project is created for SE101 scribbler project. Written in python2 using my
 Plan:
 
 Labor Division:
+
+The quick brown fox
