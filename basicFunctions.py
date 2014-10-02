@@ -7,5 +7,4 @@ def turn(ro,tim):
     rotate(ro)
     wait(tim)
     stop()
-
-
+#getObstacle() => [>1000,>1000,>1000]
