@@ -1,3 +1,6 @@
+NOTE: Please sync your project before editing!!!! (cd into directory --> git pull)
+=================================================
+
 ScribblerRobot Group 10
 ===============
 
@@ -7,8 +10,8 @@ Plan:
 
 Labor Division:
 
-The quick brown fox jumps over 23
-
 josh is here
 
 vduan in the house
+
+jayson was here
