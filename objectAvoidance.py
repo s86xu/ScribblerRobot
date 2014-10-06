@@ -16,8 +16,10 @@ def rightRotate(): # Rotate 90 to the right
 
 def cruise(): # movevent forward for a fixed distance, change the variable.
     cruiseSpeed = 0.6
-    time = 0
-    move(cruiseSpeed, time)
+    time = 0.5
+    move(cruiseSpeed, 0)
+    wait(time)
+    stop()
 
 def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
     L,C,R = getObstacle()
