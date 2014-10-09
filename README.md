@@ -6,15 +6,10 @@ ScribblerRobot Group 10
 
 This project is created for SE101 scribbler project. Written in python2 using myro and other dependencies.
 
-Plan:
+Plan:  Pong Game. 
 
-Labor Division:
 
-josh is here
 
-vduan in the house
-
-jayson was here
 
 
 
