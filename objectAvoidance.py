@@ -15,15 +15,15 @@ def rightRotate(): # Rotate 90 to the right
     stop()
 
 def cruise(): # movevent forward for a fixed distance, change the variable.
-    cruiseSpeed = 0.6
-    time = 0.5
+    cruiseSpeed = 1
+    time = 0.7 #CHANGE MADE
     move(cruiseSpeed, 0)
     wait(time)
     stop()
 
 def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
     L,C,R = getObstacle()
-    if L > 1000 and C > 1000 and R > 1000:
+    if L > 800 and C > 800 and R > 800: #CHANGE
         return True
     else:
         return False
@@ -32,7 +32,7 @@ def stageOne(): # check for object avoid while it is in first stage.
     if checkObstacle():
         leftRotate()
         cruise()
-        rotateRight()
+        rightRotate()
         return True
     else:
         return False
@@ -56,30 +56,46 @@ def body():
     while(not checkObstacle()): # while there is no obsticle infront, move forward
         move(1,0)
     stop()
+    print "stopped, obst dec"
 
     switch = True # initialized the switch
 
     while(switch): # bot stuck in first stage, keep track of distance traveled
         count += 1
-        switch = stageOne() # switch should be in OFF for this loop to break.
-
+        switch = stageOne()# switch should be in OFF for this loop to break.
+#Changes START
+    leftRotate()
+    move(1,0)
+    wait(0.5)
+    stop()
+    rightRotate()
+    move(1,0)
+    wait(0.5)
+    stop()
+#Changes END
     switch = True # reset the switch
     cruise()
 	
     while(switch): # bot stuck in stage 2
         switch = stageTwo() # switch should be off for this loop to break.
+    leftRotate()
+    move(1,0)
+    wait(0.5)
+    stop()
+    rightRotate()
 
-    for i in range(1, count): # Check value for 1 or 0, //return to the regular distance
+    print count
+    for i in range(0, count): # Check value for 1 or 0, //return to the regular distance
         cruise()
 
-    rotateLeft() # Return to the origional facing position
+    leftRotate() # Return to the origional facing position
 
     cruise() # End of the body() function
 
 def main():
     count = 2 # the number of obsticle that it need to pass through before it shutdown.
-    for i in range(1, count):
-         body()
+        #for i in range(0, count):
+    body()
 
 main() # The start of the program.
 
