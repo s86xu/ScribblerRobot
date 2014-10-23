@@ -49,7 +49,7 @@ def stageTwo():  # check for object while in second stage
         leftRotate()
         cruise()
         return True
-    else:OB
+    else:
         return False
 
 
