@@ -56,11 +56,9 @@ def stageTwo():  # check for object while in second stage
 # //----------------------------------------------------------------------------------
 def Straight():
 
-    switch = False # initialize the switch
+    print "Object is Directly ahead. Straight() Run."
+
     count = -1 # check if this should be 0 or -1
-
-    print "Initial Trigger Object Detected!"
-
     switch = True # initialized the switch
 
     while(switch): # bot stuck in first stage, keep track of distance traveled
@@ -125,9 +123,41 @@ def rightTwo():
     cruise()
 
 def Diag(case):
+    print "Diagonal Case: " + case + " Run."
+
+    count = 0
+    switch = True
+
     if case == 1: # Object on the Right side.
 
+        while switch: # First stage.
+            switch = leftOne()
+
+        print "Stage One ended."
+
+        switch = True
+
+        while switch:
+            switch = leftTwo()
+
+        print "Stage Two Ended."
+
+
+
     elif case == 2: # Object on the Left side.
+
+        while switch:
+            switch = rightOne()
+
+        print "Stage One end. Moving to Stage 2"
+
+        switch = True
+
+        while switch:
+            switch = rightTwo()
+
+        print "Stage Two end. Moving Straight"
+
 
     #else:
 
@@ -138,6 +168,7 @@ def main():
         move(1,0)
     stop()
 
+    print "Initial Obsticle Detected. Running Left & Right Check"
 
     leftRotate()
     bolLeft = checkObstacle()
@@ -147,6 +178,8 @@ def main():
     bolRight = checkObstacle()
 
     leftRotate()
+
+    print "Left Right check ended."
 
     if bolRight == False and bolLeft == False:
         Straight()
