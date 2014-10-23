@@ -2,7 +2,9 @@
 
 # initialize the whole program and port
 from myro import *
-initialize("/dev/tty.IPRE6-196107-DevB") # string can be removed to make it ask for port.
+initialize("COM3") # string can be removed to make it ask for port.
+
+# COM3 or /dev/tty.IPRE6-196107-DevB
 
 def leftRotate(): # Rotate 90 to the left
     rotate(0.8)
@@ -14,19 +16,19 @@ def rightRotate(): # Rotate 90 to the right
     wait(0.95)
     stop()
 
-def cruise(speed, time):
+def cruise(): # movevent forward for a fixed distance, change the variable.
+    cruiseSpeed = 1
+    time = 0.7
+    cruisep(cruiseSpeed, time)
+
+def cruisep(speed, time):
     move(speed, 0)
     wait(time)
     stop()
 
-def cruise(): # movevent forward for a fixed distance, change the variable.
-    cruiseSpeed = 1
-    time = 0.7
-    cruise(cruiseSpeed, time)
-
 def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
     L,C,R = getObstacle()
-    if L > 800 or C > 800 or R > 800:
+    if L > 800 and C > 800 and R > 800:
         return True
     else:
         return False
@@ -66,13 +68,13 @@ def Straight():
         switch = stageOne()# switch should be in OFF for this loop to break.
 
     leftRotate()
-    cruise(1, 0.5)
+    cruisep(1, 0.5)
 
     rightRotate()
-    cruise(1,0.5)
+    cruisep(1,0.5)
 
     switch = True # reset the switch
-    cruis()
+    cruisex()
 
     print "Stage One Complete! Moving on to Stage Two."
 
