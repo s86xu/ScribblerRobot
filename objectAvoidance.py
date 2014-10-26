@@ -2,7 +2,7 @@
 
 # initialize the whole program and port
 from myro import *
-initialize("COM3") # string can be removed to make it ask for port.
+initialize("COM4") # string can be removed to make it ask for port.
 
 # COM3 or /dev/tty.IPRE6-196107-DevB
 
@@ -28,7 +28,7 @@ def cruisep(speed, time):
 
 def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
     L,C,R = getObstacle()
-    if L > 800 and C > 800 and R > 800:
+    if L > 800 or C > 800 or R > 800: # and/or?
         return True
     else:
         return False
@@ -54,8 +54,6 @@ def stageTwo():  # check for object while in second stage
     else:
         return False
 
-
-# //----------------------------------------------------------------------------------
 def Straight():
 
     print "Object is Directly ahead. Straight() Run."
@@ -74,11 +72,10 @@ def Straight():
     cruisep(1,0.5)
 
     switch = True # reset the switch
-    cruisex()
+    cruise()
 
     print "Stage One Complete! Moving on to Stage Two."
 
-    # //---------------------------------------------------------------------------------
     while(switch): # bot stuck in stage 2
         switch = stageTwo() # switch should be off for this loop to break.
     leftRotate()
@@ -89,40 +86,54 @@ def Straight():
 
     print "Stage Two Complete! Moving back to the Origional Rotation"
 
-    # //----------------------------------------------------------------------------------
     for i in range(0, count): # Check value for 1 or 0, //return to the regular distance
         cruise()
 
     leftRotate() # Return to the origional facing position
 
-    # //----------------------------------------------------------------------------------
     cruise() # End of the body() function
 
 # //---------------------------------------------------------------------------------
 
-def leftOne():
-    leftRotate()
-    cruise()
-    rightRotate()
-    cruise()
+def leftOne(): # Object on the Right Side.
+    if checkObsticle():
+        leftRotate()
+        cruise()
+        rightRotate()
+        cruise()
+        return True
+    else:
+        return False
 
 def leftTwo():
-    rightRotate()
-    cruise()
-    leftRotate()
-    cruise()
+    if checkObsticle():
+        rightRotate()
+        cruise()
+        leftRotate()
+        cruise()
+        return True
+    else:
+        return False
 
-def rightOne():
-    rightRotate()
-    cruise()
-    leftRotate()
-    cruise()
+def rightOne(): # Object on the LEFT side.
+    if checkObsticle():
+        rightRotate()
+        cruise()
+        leftRotate()
+        cruise()
+        return True
+    else:
+        return False
 
 def rightTwo():
-    leftRotate()
-    cruise()
-    rightRotate()
-    cruise()
+    if checkObsticle():
+        leftRotate()
+        cruise()
+        rightRotate()
+        cruise()
+        return True
+    else:
+        return False
 
 def Diag(case):
     print "Diagonal Case: " + case + " Run."
@@ -134,32 +145,41 @@ def Diag(case):
 
         while switch: # First stage.
             switch = leftOne()
+            count += 1
 
+        cruise()
+        
         print "Stage One ended."
 
         switch = True
 
-        while switch:
+        while switch and count != 0:
             switch = leftTwo()
+            count -= 1
 
         print "Stage Two Ended."
 
-
+        cruise()
 
     elif case == 2: # Object on the Left side.
 
         while switch:
             switch = rightOne()
+            count += 1
 
+        cruise()
+        
         print "Stage One end. Moving to Stage 2"
-
+        
         switch = True
 
-        while switch:
+        while switch and count !=0:
             switch = rightTwo()
+            count -= 1
 
         print "Stage Two end. Moving Straight"
 
+        cruise()
 
     #else:
 
