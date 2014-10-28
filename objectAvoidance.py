@@ -2,7 +2,7 @@
 
 # initialize the whole program and port
 from myro import *
-initialize("COM4") # string can be removed to make it ask for port.
+initialize("/dev/tty.IPRE6-196107-DevB") # string can be removed to make it ask for port.
 
 # COM3 or /dev/tty.IPRE6-196107-DevB
 
@@ -28,7 +28,7 @@ def cruisep(speed, time):
 
 def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
     L,C,R = getObstacle()
-    if L > 800 or C > 800 or R > 800: # and/or?
+    if L > 1050 and C > 1050 and R > 1050:
         return True
     else:
         return False
@@ -66,10 +66,10 @@ def Straight():
         switch = stageOne()# switch should be in OFF for this loop to break.
 
     leftRotate()
-    cruisep(1, 0.5)
+    cruisep(0.8, 0.6)
 
     rightRotate()
-    cruisep(1,0.5)
+    cruisep(0.8,0.6)
 
     switch = True # reset the switch
     cruise()
@@ -79,15 +79,16 @@ def Straight():
     while(switch): # bot stuck in stage 2
         switch = stageTwo() # switch should be off for this loop to break.
     leftRotate()
-    move(1,0)
-    wait(0.5)
-    stop()
+    cruisep(0.8, 0.6)
     rightRotate()
 
     print "Stage Two Complete! Moving back to the Origional Rotation"
 
+    print count
     for i in range(0, count): # Check value for 1 or 0, //return to the regular distance
         cruise()
+
+    cruisep(0.8, 0.6)
 
     leftRotate() # Return to the origional facing position
 
@@ -187,7 +188,7 @@ def Diag(case):
 def main():
 
     while(not checkObstacle()): # while there is no obsticle in front, move forward
-        move(1,0)
+        move(0.8,0)
     stop()
 
     print "Initial Obsticle Detected. Running Left & Right Check"
