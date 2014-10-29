@@ -34,24 +34,6 @@ def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
     else:
         return False
 
-
-def r_checkObstacle():
-    L,C,R = getObstacle()
-    v = 900
-    if L > v and C > v:
-        return True
-    else:
-        return False
-
-def l_checkObstacle():
-    L,C,R = getObstacle()
-    v = 900
-    if R > v and C > v:
-        return True
-    else:
-        return False
-
-
 # //-----------------------------------------------------------------------------
 def stageOne(): # check for object avoid while it is in first stage.
     if checkObstacle():
@@ -111,102 +93,6 @@ def Straight():
 
     cruise() # End of the body() function
 
-# //---------------------------------------------------------------------------------
-
-def leftOne(): # Object on the Right Side.
-    if checkObstacle():
-        leftRotate()
-        cruise()
-        rightRotate()
-        cruise()
-        return True
-    else:
-        return False
-
-def leftTwo():
-    #if checkObstacle():
-    rightRotate()
-    cruise()
-    leftRotate()
-    cruise()
-    return True
-    #else:
-    #    return False
-
-def rightOne(): # Object on the LEFT side.
-    if checkObstacle():
-        rightRotate()
-        cruise()
-        leftRotate()
-        cruise()
-        return True
-    else:
-        return False
-
-def rightTwo():
-    #if checkObstacle():
-    leftRotate()
-    cruise()
-    rightRotate()
-    cruise()
-    return True
-    #else:
-        #return False
-
-def Diag(case):
-    print "Diagonal Case: " + str(case) + " Run."
-
-    count = 0
-    switch = True
-
-    if case == 1: # Object on the Right side.
-
-        while switch: # First stage.
-            switch = leftOne()
-            count += 1
-
-        print "f"
-        leftRotate()
-        cruise()
-        rightRotate()
-        cruise()
-        count += 1
-        print "d"
-        
-        print "Stage One ended."
-
-        switch = True
-
-        while switch and count != 0:
-            switch = leftTwo()
-            count -= 1
-
-        print "Stage Two Ended."
-
-        cruise()
-
-    elif case == 2: # Object on the Left side.
-
-        while switch:
-            switch = rightOne()
-            count += 1
-
-        cruise()
-        
-        print "Stage One end. Moving to Stage 2"
-        
-        switch = True
-
-        while switch and count !=0:
-            switch = rightTwo()
-            count -= 1
-
-        print "Stage Two end. Moving Straight"
-
-        cruise()
-
-    #else:
-
 # //----------------------------------------------------------------------------------
 def main():
 
@@ -214,22 +100,8 @@ def main():
         move(0.8,0)
     stop()
 
-    print "Initial Obsticle Detected. Running Left & Right Check"
-
-    bolLeft = l_checkObstacle()
-
-    bolRight = r_checkObstacle()
-
-
-    print "Left Right check ended."
-
-    if bolRight == False and bolLeft == False:
-        Straight()
-    elif bolRight:
-        Diag(1)
-    elif bolLeft:
-        Diag(2)
-
+    print "Initial Obsticle Detected"
+    Straight()
 
 # //-----------------------------------------------------------------------------------
 
