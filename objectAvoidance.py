@@ -4,7 +4,7 @@
 from myro import *
 initialize() # string can be removed to make it ask for port.
 
-# COM3 or /dev/tty.IPRE6-196107-DevB
+# COM3 or COM4 or /dev/tty.IPRE6-196107-DevB
 
 def leftRotate(): # Rotate 90 to the left
     rotate(0.8)
@@ -33,6 +33,20 @@ def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
     else:
         return False
 
+
+def r_checkObstacle():
+    L,C,R = getObstacle()
+    if L > 1050 and C > 1000:
+        return True
+    else:
+        return False
+
+def l_checkObstacle():
+    L,C,R = getObstacle()
+    if R > 1050 and C > 1000:
+        return True
+    else:
+        return False
 
 
 # //-----------------------------------------------------------------------------
@@ -194,11 +208,11 @@ def main():
     print "Initial Obsticle Detected. Running Left & Right Check"
 
     leftRotate()
-    bolLeft = checkObstacle()
+    bolLeft = l_checkObstacle()
 
     rightRotate()
     rightRotate()
-    bolRight = checkObstacle()
+    bolRight = r_checkObstacle()
 
     leftRotate()
 
