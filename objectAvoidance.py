@@ -2,7 +2,7 @@
 
 # initialize the whole program and port
 from myro import *
-initialize("/dev/tty.IPRE6-196107-DevB") # string can be removed to make it ask for port.
+initialize() # string can be removed to make it ask for port.
 
 # COM3 or /dev/tty.IPRE6-196107-DevB
 
