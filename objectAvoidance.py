@@ -28,7 +28,7 @@ def cruisep(speed, time):
 
 def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
     L,C,R = getObstacle()
-    if L > 1050 and C > 1050 and R > 1050:
+    if L > 900 and C > 900 and R > 900:
         return True
     else:
         return False
@@ -36,14 +36,14 @@ def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
 
 def r_checkObstacle():
     L,C,R = getObstacle()
-    if L > 1050 and C > 1000:
+    if L > 1000 and C > 900:
         return True
     else:
         return False
 
 def l_checkObstacle():
     L,C,R = getObstacle()
-    if R > 1050 and C > 1000:
+    if R > 1000 and C > 900:
         return True
     else:
         return False
@@ -151,7 +151,7 @@ def rightTwo():
         return False
 
 def Diag(case):
-    print "Diagonal Case: " + case + " Run."
+    print "Diagonal Case: " + str(case) + " Run."
 
     count = 0
     switch = True
@@ -201,7 +201,7 @@ def Diag(case):
 # //----------------------------------------------------------------------------------
 def main():
 
-    while(not checkObstacle()): # while there is no obsticle in front, move forward
+    while(not checkObstacle() and not l_checkObstacle() and not r_checkObstacle): # while there is no obsticle in front, move forward
         move(0.8,0)
     stop()
 
