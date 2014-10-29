@@ -2,7 +2,7 @@
 
 # initialize the whole program and port
 from myro import *
-initialize() # string can be removed to make it ask for port.
+initialize("/dev/tty.IPRE6-196107-DevB") # string can be removed to make it ask for port.
 
 # COM3 or COM4 or /dev/tty.IPRE6-196107-DevB
 
@@ -18,7 +18,7 @@ def rightRotate(): # Rotate 90 to the right
 
 def cruise(): # movevent forward for a fixed distance, change the variable.
     cruiseSpeed = 1
-    time = 0.7
+    time = 0.5
     cruisep(cruiseSpeed, time)
 
 def cruisep(speed, time):
@@ -28,7 +28,7 @@ def cruisep(speed, time):
 
 def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
     L,C,R = getObstacle()
-    v = 1000
+    v = 700  # 850 for Straight()
     if L > v and C > v and R > v:
         return True
     else:
@@ -37,14 +37,16 @@ def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
 
 def r_checkObstacle():
     L,C,R = getObstacle()
-    if L > 1000 and C > 900:
+    v = 900
+    if L > v and C > v:
         return True
     else:
         return False
 
 def l_checkObstacle():
     L,C,R = getObstacle()
-    if R > 1000 and C > 900:
+    v = 900
+    if R > v and C > v:
         return True
     else:
         return False
@@ -81,10 +83,10 @@ def Straight():
         switch = stageOne()# switch should be in OFF for this loop to break.
 
     leftRotate()
-    cruisep(0.8, 0.6)
+    cruisep(0.8, 0.7)
 
     rightRotate()
-    cruisep(0.8,0.6)
+    cruisep(0.8,0.7)
 
     switch = True # reset the switch
     cruise()
@@ -112,7 +114,7 @@ def Straight():
 # //---------------------------------------------------------------------------------
 
 def leftOne(): # Object on the Right Side.
-    if checkObsticle():
+    if checkObstacle():
         leftRotate()
         cruise()
         rightRotate()
@@ -122,17 +124,17 @@ def leftOne(): # Object on the Right Side.
         return False
 
 def leftTwo():
-    if checkObsticle():
-        rightRotate()
-        cruise()
-        leftRotate()
-        cruise()
-        return True
-    else:
-        return False
+    #if checkObstacle():
+    rightRotate()
+    cruise()
+    leftRotate()
+    cruise()
+    return True
+    #else:
+    #    return False
 
 def rightOne(): # Object on the LEFT side.
-    if checkObsticle():
+    if checkObstacle():
         rightRotate()
         cruise()
         leftRotate()
@@ -142,14 +144,14 @@ def rightOne(): # Object on the LEFT side.
         return False
 
 def rightTwo():
-    if checkObsticle():
-        leftRotate()
-        cruise()
-        rightRotate()
-        cruise()
-        return True
-    else:
-        return False
+    #if checkObstacle():
+    leftRotate()
+    cruise()
+    rightRotate()
+    cruise()
+    return True
+    #else:
+        #return False
 
 def Diag(case):
     print "Diagonal Case: " + str(case) + " Run."
@@ -163,7 +165,13 @@ def Diag(case):
             switch = leftOne()
             count += 1
 
+        print "f"
+        leftRotate()
         cruise()
+        rightRotate()
+        cruise()
+        count += 1
+        print "d"
         
         print "Stage One ended."
 
@@ -202,20 +210,16 @@ def Diag(case):
 # //----------------------------------------------------------------------------------
 def main():
 
-    while(not checkObstacle() and not l_checkObstacle() and not r_checkObstacle): # while there is no obsticle in front, move forward
+    while(not checkObstacle()): # while there is no obsticle in front, move forward
         move(0.8,0)
     stop()
 
     print "Initial Obsticle Detected. Running Left & Right Check"
 
-    leftRotate()
     bolLeft = l_checkObstacle()
 
-    rightRotate()
-    rightRotate()
     bolRight = r_checkObstacle()
 
-    leftRotate()
 
     print "Left Right check ended."
 
@@ -229,6 +233,7 @@ def main():
 
 # //-----------------------------------------------------------------------------------
 
+senses()
 main() # The start of the program.
 
 
