@@ -28,8 +28,8 @@ def cruisep(speed, time):
 
 def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
     L,C,R = getObstacle()
-    v = 500  # 850 for Straight()
-    if L > v-300 and C > v and R > v:
+    v = 400  # 850 for Straight()
+    if (L > v-300 and C > v and R > v):
         return True
     else:
         return False
@@ -39,9 +39,9 @@ def Left():
     leftRotate()
     cruisep(1,3)
     rightRotate()
-    cruisep(1,4)
+    cruisep(1,4.8)
     rightRotate()
-    cruisep(1,3)
+    cruisep(1,2.2)
     leftRotate()
     cruisep(1,3)
 
@@ -49,7 +49,7 @@ def Left():
 def main():
 
     while(not checkObstacle()): # while there is no obsticle in front, move forward
-        move(0.8,0)
+        move(0.7,0)
     stop()
 
     print "Initial Obsticle Detected."

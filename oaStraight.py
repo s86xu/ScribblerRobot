@@ -18,7 +18,7 @@ def rightRotate(): # Rotate 90 to the right
 
 def cruise(): # movevent forward for a fixed distance, change the variable.
     cruiseSpeed = 1
-    time = 0.5
+    time = 0.44
     cruisep(cruiseSpeed, time)
 
 def cruisep(speed, time):
@@ -28,7 +28,7 @@ def cruisep(speed, time):
 
 def checkObstacle(): # check obstacle function, main func. Perhaps need tweaking
     L,C,R = getObstacle()
-    v = 700  # 850 for Straight()
+    v = 850  # 850 for Straight()
     if L > v and C > v and R > v:
         return True
     else:
@@ -97,7 +97,8 @@ def Straight():
 def main():
 
     while(not checkObstacle()): # while there is no obsticle in front, move forward
-        move(0.8,0)
+        move(0.7,0)
+    #wait(0.01)
     stop()
 
     print "Initial Obsticle Detected"
