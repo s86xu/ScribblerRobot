@@ -2,16 +2,16 @@ from myro import *
 
 
 #Rotation Value
-ro = 0.8
-rotim = 0.95
+trrot = 0.8
+trtim = 0.95
 
 #Move Straight Value
-mv = 1
+mvspd = 1
 mvtim = 0.5
 
 #Collision Detection Value
 colDecFluke = 1000
-colDecIR
+colDecIR = 10
 
 
 # Basic Myro Commands:
@@ -28,24 +28,21 @@ def turn(ro,tim):
     stop()
 
 def turnLeft():
-    rotate(ro)
-    wait(rotim)
-    stop()
+    turn(trrot, trtim)
 
 def turnRight():
-    rotate(-ro)
-    wait(rotim)
-    stop
+    turn(trrot, trtim)
+
+def mv(speed , time):
+    move(speed)
+    wait(time)
+    stop()
 
 def mvForward():
-    move(mv, 0)
-    wait(mvtim)
-    stop()
+    mv(mvspd, mvtim)
 
 def mvBackward():
-    move(-mv, 0)
-    wait(mvtim)
-    stop()
+    mv(-mvspd, mvtim)
 
 # Fluke Board Collision Detection check
 def flukeCheck():
@@ -97,17 +94,3 @@ def irCheckRight():
  	return True
     else:
 	return False
-
-# Picture Taking
-def snapShot():
-    img = takePicture()
-    show(img)
-
-# Music function()
-def play(title):
-    #robot.
-    playSong(readSong(title))
-
-#Speaking
-def say(word):
-    speak(word)
