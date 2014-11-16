@@ -1,28 +1,7 @@
-#Obstacle Avoidance
-
-#notes
-#you cannot move and detect at the same time
-#check object before boundary
-
-#getLine()
-
-#after command, wait, and check
-#if found object, turn off incruising and 
 
 from myro import *
 initialize("/dev/tty.IPRE6-196107-DevB")
 
-cruiseSpeed = 0.6
-turnSpeed = 0.5
-
-inTurning = False
-inTurningCount = 0
-inCruising = True
-inCruisingCound = 0
-
-seenObstacle = False
-
-hardDistance = 10
 
 def leftRotate():
     rotate(-0.8)#speed
@@ -41,7 +20,7 @@ def checkObstacle():
     else:
         return False
 def checkBoundary():
-    if getLine(0) == 0 and getLine(1) == 0:
+    if getLine(0) == 1 and getLine(1) == 1:
         return True
     else:
         return False
@@ -57,16 +36,16 @@ def main():
             #leftRotate()
             #move(-1,0)
             #wait(0.5)
-            move(1,0)
-            wait(1.0)
+            move(-1,0)
+            wait(1.1)
             stop()
             leftRotate()
-            move(-1,0)
+            move(1,0)
             wait(0.5)
             stop()
             
         else:
-            move(-1,0)
+            move(0.5,0)
             wait(0.5)
             #stop()
             #wait(1)

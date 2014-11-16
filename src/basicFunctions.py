@@ -10,7 +10,7 @@ mvspd = 1
 mvtim = 0.5
 
 #Collision Detection Value
-colDecFluke = 1000
+colDecFluke = 680
 colDecIR = 10
 
 
@@ -28,10 +28,14 @@ def turn(ro,tim):
     stop()
 
 def turnLeft():
-    turn(trrot, trtim)
+    turn(-trrot, trtim)
 
 def turnRight():
     turn(trrot, trtim)
+
+def mv_nostop(speed,time):
+    move(speed)
+    wait(time)
 
 def mv(speed , time):
     move(speed)
@@ -94,3 +98,10 @@ def irCheckRight():
  	return True
     else:
 	return False
+
+#Check boundary function
+def checkBoundary():
+    if getLine(0) == 1 and getLine(1) == 1:
+        return True
+    else:
+        return False
