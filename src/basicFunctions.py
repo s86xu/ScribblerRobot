@@ -28,17 +28,17 @@ def turn(ro,tim):
     stop()
 
 def turnLeft():
-    turn(-trrot, trtim)
-
-def turnRight():
     turn(trrot, trtim)
 
+def turnRight():
+    turn(-trrot, trtim)
+
 def mv_nostop(speed,time):
-    move(speed)
+    move(speed, 0)
     wait(time)
 
 def mv(speed , time):
-    move(speed)
+    move(speed, 0)
     wait(time)
     stop()
 
