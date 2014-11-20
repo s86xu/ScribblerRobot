@@ -2,19 +2,18 @@ from myro import *
 from basicFunctions import *
 from oa import *
 from colorDetTest import *
+from pygame import *
 
-initialize("COM3")#or COM3
-from pygame import*
+initialize("COM3")
 
 colorWantedDetected = input("Should I find 'red','blue',or 'green'?: ")
-
-
-
 
 BLACK = ( 0, 0, 0)
 WHITE = ( 255, 255, 255)
 GREEN = ( 0, 255, 0)
 RED = ( 255, 0, 0)
+
+
 pygame.init()
 
 screenWidth = 700
@@ -200,6 +199,7 @@ while not done:
                     #break
                     wholeMapTravelled = True
                     if not colorFound:
+                        print("HELP ME!")
                         inHelp = True
                 else:
                     turnLeft()
@@ -212,6 +212,7 @@ while not done:
                     #break
                     wholeMapTravelled = True
                     if not colorFound:
+                        print("HELP ME!")
                         inHelp = True
                 else:
                     turnRight()
@@ -224,7 +225,7 @@ while not done:
     #if not inHelp and not wholeMapTravelled:
         #------------COLOR DETECTION------------
         #if object detected and not inobjectavoidance
-        if "object detected" and not inOA:
+        if flukeCheck() and not inOA:
             inLawnMowing = False
             stop()
             inColorDetection = True
@@ -241,7 +242,9 @@ while not done:
             allSprites.add(box)
             if result == colorWantedDetected:
                 stop()
-                beep(1.5,800)
+                beep(1,800)
+                wait(0.1)
+                beep(1,800)
                 success = True
                 colorFound = True
                 break

@@ -3,7 +3,7 @@ from myro import *
 #from PIL import ImageTk
 #import ImageTk
 #import Image
-initialize("/dev/tty.IPRE6-196107-DevB")
+#initialize("/dev/tty.IPRE6-196107-DevB")
 
 def findIfRGB():#returns r,g,b,or 0
     wait(0.5)
@@ -21,11 +21,11 @@ def findIfRGB():#returns r,g,b,or 0
     array = [redResult['pxlCount'],greenResult['pxlCount'],blueResult['pxlCount']]
 
     if redResult['pxlCount'] == max(array): 
-        return "R"
+        return "red"
     elif greenResult['pxlCount'] == max(array): 
-        return "G"
+        return "green"
     elif blueResult['pxlCount'] == max(array): 
-        return "B"
+        return "blue"
 
     #else:
         
@@ -71,7 +71,7 @@ def filterImage(minR, maxR, minG, maxG, minB, maxB): # Enter -1 into min value t
         avgY = 0
     #Return dictionary(black-white blob image, pixel count, average x value and y value of pixel locations
     return {'shape':pic, 'pxlCount':pxlCount, 'avgX':avgX, 'avgY':avgY}
-
+"""
 def main():
     for i in range(0,18):
         
@@ -88,4 +88,4 @@ def main():
 
 
 main()
-                
+"""               

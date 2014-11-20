@@ -4,7 +4,7 @@
 from myro import *
 from basicFunctions import *
 
-init("/dev/tty.IPRE6-196107-DevB")
+#init("/dev/tty.IPRE6-196107-DevB")
 
 def leftRotate(): # Rotate 90 to the left
     turnLeft()
@@ -70,6 +70,7 @@ def objectAvoid():
     cruisep(0.8, 0.7)
     
     rightRotate()
+    print("object avoidance completed")
 '''
     cruisep(0.8,0.7)
     
