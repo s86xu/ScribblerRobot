@@ -10,7 +10,7 @@ mvspd = 1
 mvtim = 0.5
 
 #Collision Detection Value
-colDecFluke = 680
+colDecFluke = 1000
 colDecIR = 10
 
 

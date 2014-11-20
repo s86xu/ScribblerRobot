@@ -6,10 +6,18 @@ from pygame import *
 
 initialize("COM3")
 
-colorWantedDetected = input("Should I find 'red','blue',or 'green'?: ")
+while True:
+    colorWantedDetected = raw_input("Should I find 'red','blue',or 'green'?: ")
+    if colorWantedDetected == "red" or colorWantedDetected == "green" or colorWantedDetected == "blue":
+        break
+    else:
+        print("sorry what?")
+
+
 
 BLACK = ( 0, 0, 0)
 WHITE = ( 255, 255, 255)
+BLUE = ( 0, 0, 255)
 GREEN = ( 0, 255, 0)
 RED = ( 255, 0, 0)
 
@@ -106,6 +114,7 @@ while not done:
     for event in pygame.event.get(): # Event
         if event.type == pygame.QUIT: # If close window
             done = True
+            pygame.quit()
             
         #---------------USER HELP-----------------
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -171,13 +180,7 @@ while not done:
     clickposition=event.type==pygame.MOUSEBUTTONDOWN  
     
         
-    #-------------CONSTANT DRAWINGS-----------------
-    screen.fill(WHITE)
-    drawGrid()
-    allSprites.draw(screen)#WE NEED TO CALL THIS IMMEDIATELY AFTER EVERY
-    #AFTER EVERY INCREMENT AND MOVEMENT TO HAVE CLOSETOSMOOTH UPDATE ON MAP
-    # --- Go ahead and update the screen with what we've drawn.
-    pygame.display.flip()#WE NEED TO CALL THIS ALSO AFTER EVERY INCREMENT
+    #used to be here
 
 
     #DETECTIONS
@@ -269,10 +272,16 @@ while not done:
             inColorDetection = False
             inLawnMowing = True
 
-
+    #-------------CONSTANT DRAWINGS-----------------
+    screen.fill(WHITE)
+    drawGrid()
+    allSprites.draw(screen)#WE NEED TO CALL THIS IMMEDIATELY AFTER EVERY
+    #AFTER EVERY INCREMENT AND MOVEMENT TO HAVE CLOSETOSMOOTH UPDATE ON MAP
+    # --- Go ahead and update the screen with what we've drawn.
+    pygame.display.flip()#WE NEED TO CALL THIS ALSO AFTER EVERY INCREMENT
     # --- Limit to 60 frames per second
     clock.tick(60)
 # Close the window and quit.
 # If you forget this line, the program will 'hang'
 # on exit if running from IDLE.
-pygame.quit()
+#pygame.quit()
